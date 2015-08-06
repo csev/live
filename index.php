@@ -8,14 +8,13 @@
 	</head>
 
 	<body>
-	<script type="text/javascript">
-		when = new Date('2015-08-06T07:15:00');
-alert(when.toISOString());
-		now = new Date();
-alert(now.toISOString());
-		diff = (when.getTime() - now.getTime()) / 1000;
-		alert(diff);
-	</script>
+<?php
+date_default_timezone_set('America/Detroit');
+
+$date1 = new DateTime("2015-08-07 10:00:00");
+$now = new DateTime();
+$difference_in_seconds = $date1->format('U') - $now->format('U');
+?>
 	<div class="clock" style="margin:2em;"></div>
 	<div class="message"></div>
 
@@ -36,7 +35,7 @@ alert(now.toISOString());
 		    });
 
 				    
-		    clock.setTime(diff);
+		    clock.setTime(<?= $difference_in_seconds ?>);
 		    clock.setCountdown(true);
 		    clock.start();
 
