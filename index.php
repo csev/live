@@ -19,7 +19,7 @@ $difference_in_seconds = $date1->format('U') - $now->format('U');
 ?>
 	<h1>Dr. Chuck's Live Office Hours</h1>
 	<p>Next Scheduled Office Hours: <?= $next ?></p>
-	<p>This page is for live office hours in Dr. Chuck's 
+	<p>This page is for live office hours using Google Hangouts in Dr. Chuck's 
 <a href="https://www.coursera.org/course/pythonlearn" target="_blank">
 Programming for Everybody (Python)</a>
 and 
