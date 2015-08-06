@@ -19,6 +19,13 @@ $difference_in_seconds = $date1->format('U') - $now->format('U');
 ?>
 	<h1>Dr. Chuck's Live Office Hours</h1>
 	<p>Next Scheduled Office Hours: <?= $next ?></p>
+	<p>This page is for live office hours in Dr. Chuck's 
+<a href="https://www.coursera.org/course/pythonlearn" target="_blank">
+Programming for Everybody (Python)</a>
+and 
+<a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
+Internet History, Technology, and Security</a> courses on Coursera.
+</p>
 	<p>This page will refresh and automatically send you to the the live office hours 
 	URL when the office hours are about to start.</p>
 	<div class="clock" style="margin:2em;"></div>
