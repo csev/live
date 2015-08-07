@@ -1,3 +1,33 @@
+<?php
+require_once "setup.php";
+
+$date1 = new DateTime($live);
+$now = new DateTime();
+$difference_in_seconds = $date1->format('U') - $now->format('U');
+
+// Add a skew based on IP address so they don't flood my server
+$skew = 0;
+if ( isset($_SERVER['REMOTE_ADDR']) ) {
+	$addr = $_SERVER['REMOTE_ADDR'];
+	$sha = sha1($addr,true);
+	$skew = ord($sha[0]) % 20;
+}
+
+$difference_in_seconds = $difference_in_seconds + $skew;
+
+if ( $difference_in_seconds < 1 ) {
+        header("Location: ".$url);
+        return;
+}
+
+$refresh = ($difference_in_seconds * 1000) / 2;
+if ( $refresh > 5*60*1000 ) $refresh = 5*60*1000;
+if ( $refresh < 10*1000 ) $refresh = 10*1000;
+
+// Add up to 10 seconds so they don't hit my server all at the same time
+$refresh = $refresh + rand(0,10*1000);
+
+?>
 <html>
 	<head>
 		<link rel="stylesheet" href="compiled/flipclock.css">
@@ -8,39 +38,31 @@
 	</head>
 
 	<body style="font-family: sans-serif;">
-<?php
-date_default_timezone_set('America/Detroit');
-
-$next = "2015-08-07 10:00:00";
-
-$date1 = new DateTime($next);
-$now = new DateTime();
-$difference_in_seconds = $date1->format('U') - $now->format('U');
-?>
 	<h1>Dr. Chuck's Live Office Hours</h1>
-	<p>Next Scheduled Office Hours: <?= $next ?></p>
-	<p>This page is for live office hours using Google Hangouts in Dr. Chuck's 
+	<p>Next Scheduled Office Hours: <?= $live ?> (Eastern Time USA)</p>
+	<p>This page is for live office hours using Google Hangouts 
+	in Dr. Chuck's 
 <a href="https://www.coursera.org/course/pythonlearn" target="_blank">
 Programming for Everybody (Python)</a>
 and 
 <a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
 Internet History, Technology, and Security</a> courses on Coursera.
 </p>
-	<p>This page will refresh and automatically send you to the the live office hours 
-	URL when the office hours are about to start.</p>
-	<div class="clock" style="margin:2em;"></div>
+	<p>This page will refresh and automatically send you to 
+	the the live office hours URL when the office hours are about 
+	to start.</p>
+	<div class="clock" style="align: center; margin:2em;"></div>
 	<div class="message"></div>
 
 	<script type="text/javascript">
 
 		function refresh() {
-			// alert("bing");
 			window.location.reload();
 		}
 
-		setTimeout(refresh, 5*60*1000);
-			
-		
+		window.console && console.log("Refresh <?= $refresh ?>");
+		setTimeout(refresh, <?= $refresh ?>);
+
 		var clock;
 		
 		$(document).ready(function() {
@@ -51,7 +73,7 @@ Internet History, Technology, and Security</a> courses on Coursera.
 		        autoStart: false,
 		        callbacks: {
 		        	stop: function() {
-		        		$('.message').html('The clock has stopped!')
+		        		refresh();
 		        	}
 		        }
 		    });
@@ -70,6 +92,14 @@ Internet History, Technology, and Security</a> courses on Coursera.
 <p>While you wait, you can watch some of my recorded
 <a href="https://www.youtube.com/watch?v=wXrDopq8pVw&index=1&list=PLlRFEj9H3Oj4qyq0OLZ76cMtUUgqUNtmz"
 target="_blank">face-to-face office hours</a>.
+<center>
+<a href="https://www.coursera.org/course/pythonlearn" target="_blank">
+<img src="https://coursera.s3.amazonaws.com/topics/insidetheinternet/large-icon.png" width="240" style="padding:2px;">
+</a>
+<a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
+<img src="https://d15cw65ipctsrr.cloudfront.net/29/753da0352c11e494bcf927fb09cbc9/MOOCMap-highres.png" width="240" style="padding:2px;"><br/>
+</a>
+</center>
 	
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
