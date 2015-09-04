@@ -38,15 +38,27 @@ $refresh = $refresh + rand(0,10*1000);
 	</head>
 
 	<body style="font-family: sans-serif;">
-	<h1>Dr. Chuck's Live Office Hours</h1>
+	<h1>Live Office Hours Dr. Chuck</h1>
 	<p>Next Scheduled Office Hours: <?= $live ?> (Eastern Time USA)</p>
 	<p>This page is for live office hours using Google Hangouts 
 	in Dr. Chuck's 
-<a href="https://www.coursera.org/course/pythonlearn" target="_blank">
-Programming for Everybody (Python)</a>
+<a href="https://www.coursera.org/learn/python" target="_blank">
+Getting Started with Python</a>,
+<a href="https://www.coursera.org/specializations/python" target="_blank">
+Python Specialization</a>
 and 
 <a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
 Internet History, Technology, and Security</a> courses on Coursera.
+</p>
+<p>
+We like to bring guests into the live office hours and one of 
+our recurring guests is my colleague 
+<a href="https://twitter.com/ColleenAtUMSI" taget="_blank">Colleen van Lent</a> 
+who teaches the Coursera
+<a href="https://www.coursera.org/specializations/web-design" target="_blank">
+Web Design for Everybody</a> specialization.
+</p>
+
 </p>
 	<p>This page will refresh and automatically send you to 
 	the the live office hours URL when the office hours are about 
@@ -91,16 +103,36 @@ Internet History, Technology, and Security</a> courses on Coursera.
 
 <p>While you wait, you can watch some of my recorded
 <a href="https://www.youtube.com/watch?v=wXrDopq8pVw&index=1&list=PLlRFEj9H3Oj4qyq0OLZ76cMtUUgqUNtmz"
-target="_blank">face-to-face office hours</a>.
+target="_blank">face-to-face office hours</a><?php
+if ( isset($previous) ) {
+echo(' or view the <a href="'.$previous.'" target="_blank">');
+echo('the previous live office hours</a>');
+}
+?>. 
 <center>
-<a href="https://www.coursera.org/course/pythonlearn" target="_blank">
+<a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
 <img src="https://coursera.s3.amazonaws.com/topics/insidetheinternet/large-icon.png" width="240" style="padding:2px;">
 </a>
-<a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
+<a href="https://www.coursera.org/learn/python" target="_blank">
 <img src="https://d15cw65ipctsrr.cloudfront.net/29/753da0352c11e494bcf927fb09cbc9/MOOCMap-highres.png" width="240" style="padding:2px;"><br/>
 </a>
 </center>
 	
+<!--
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'drchucklive';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+-->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
