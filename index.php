@@ -29,43 +29,71 @@ $refresh = $refresh + rand(0,10*1000);
 
 ?>
 <html>
-	<head>
+<head>
 		<link rel="stylesheet" href="compiled/flipclock.css">
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-		<script src="compiled/flipclock.js"></script>
+          <script src="compiled/flipclock.js"></script>
+</head>
+<style>
+body {
+  background: url(bgbg.jpg) no-repeat center center fixed; 
+  background-color: gray;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font: 16px;
+  line-height: 1.5;
+  color: white;
+  font-family: lato, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+}
+
+.container {
+  margin-top: 10vh;
+  margin-left: 10vh;
+  margin-right: 10vh;
+}
+
+a {
+    color:white;
+}
+
+.clock {
+  width: 80% ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+
+
+.flip-clock-label {
+display:none;
+}
+</style>
 	</head>
-
 	<body style="font-family: sans-serif;">
-	<h1>Live Office Hours Dr. Chuck</h1>
-	<p>Next Scheduled Office Hours: <?= $live ?> (Eastern Time USA)</p>
-	<p>This page is for live office hours using Google Hangouts 
-	in Dr. Chuck's 
-<a href="https://www.coursera.org/learn/python" target="_blank">
-Getting Started with Python</a>,
-<a href="https://www.coursera.org/specializations/python" target="_blank">
-Python Specialization</a>
-and 
-<a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
-Internet History, Technology, and Security</a> courses on Coursera.
-</p>
+<div class="container">
+	<h1><?= htmlentities($title) ?></h1>
+	<p>Next Scheduled Event: <?= $live ?> (Eastern Time USA)</p>
 <p>
-We like to bring guests into the live office hours and one of 
-our recurring guests is my colleague 
-<a href="https://twitter.com/ColleenAtUMSI" taget="_blank">Colleen van Lent</a> 
-who teaches the Coursera
-<a href="https://www.coursera.org/specializations/web-design" target="_blank">
-Web Design for Everybody</a> specialization.
-</p>
-
+<?= $description ?>
 </p>
 	<p>This page will refresh and automatically send you to 
-	the the live office hours URL when the office hours are about 
+	the the event URL when the event is about 
 	to start.</p>
-	<div class="clock" style="align: center; margin:2em;"></div>
+	<div class="clock"></div>
 	<div class="message"></div>
-
+<p>While you wait, you can watch some of my recorded
+<a href="https://www.youtube.com/playlist?list=PLlRFEj9H3Oj4qyq0OLZ76cMtUUgqUNtmz"
+target="_blank">face-to-face office hours</a><?php
+if ( isset($previous) ) {
+echo(' or view the <a href="'.$previous.'" target="_blank">');
+echo('the previous live office hours</a>');
+}
+?>. 
 	<script type="text/javascript">
 
 		function refresh() {
@@ -100,23 +128,7 @@ Web Design for Everybody</a> specialization.
 <!--
 <a href="http://flipclockjs.com/" target="_blank">Uses FlipClock.js</a>
 -->
-
-<p>While you wait, you can watch some of my recorded
-<a href="https://www.youtube.com/watch?v=wXrDopq8pVw&index=1&list=PLlRFEj9H3Oj4qyq0OLZ76cMtUUgqUNtmz"
-target="_blank">face-to-face office hours</a><?php
-if ( isset($previous) ) {
-echo(' or view the <a href="'.$previous.'" target="_blank">');
-echo('the previous live office hours</a>');
-}
-?>. 
-<center>
-<a href="https://www.coursera.org/learn/insidetheinternet" target="_blank">
-<img src="https://coursera.s3.amazonaws.com/topics/insidetheinternet/large-icon.png" width="240" style="padding:2px;">
-</a>
-<a href="https://www.coursera.org/learn/python" target="_blank">
-<img src="https://d15cw65ipctsrr.cloudfront.net/29/753da0352c11e494bcf927fb09cbc9/MOOCMap-highres.png" width="240" style="padding:2px;"><br/>
-</a>
-</center>
+</div>
 	
 <!--
 <div id="disqus_thread"></div>
