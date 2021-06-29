@@ -30,9 +30,19 @@ $refresh = $refresh + rand(0,10*1000);
 ?>
 <html>
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-423997-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-423997-1');
+</script>
+
 		<link rel="stylesheet" href="compiled/flipclock.css">
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
           <script src="compiled/flipclock.js"></script>
 </head>
@@ -76,6 +86,9 @@ display:none;
 	</head>
 	<body style="font-family: sans-serif;">
 <div class="container">
+<div style="margin-left: 10px; float:right">
+<iframe width="400" height="225" src="https://www.youtube.com/embed/UjeNA_JtXME?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
 	<h1><?= htmlentities($title) ?></h1>
 	<p>Next Scheduled Event: <?= $live ?> (Eastern Time USA)</p>
 <p>
@@ -87,9 +100,10 @@ display:none;
 	<div class="clock"></div>
 	<div class="message"></div>
 <p>While you wait, you can watch some of my recorded
-<a href="https://www.youtube.com/playlist?list=PLlRFEj9H3Oj4qyq0OLZ76cMtUUgqUNtmz"
+face to face office hours at
+<a href="https://www.dr-chuck.com/office"
 target="_blank">face-to-face office hours</a><?php
-if ( isset($previous) ) {
+if ( isset($previous) && $previous ) {
 echo(' or view the <a href="'.$previous.'" target="_blank">');
 echo('the previous live office hours</a>');
 }
@@ -126,7 +140,7 @@ echo('the previous live office hours</a>');
 		});
 	</script>
 <!--
-<a href="http://flipclockjs.com/" target="_blank">Uses FlipClock.js</a>
+<a href="https://flipclockjs.com/" target="_blank">Uses FlipClock.js</a>
 -->
 </div>
 	
