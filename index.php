@@ -99,15 +99,6 @@ display:none;
 	to start.</p>
 	<div class="clock"></div>
 	<div class="message"></div>
-<p>While you wait, you can watch some of my recorded
-face to face office hours at
-<a href="https://www.dr-chuck.com/office"
-target="_blank">face-to-face office hours</a><?php
-if ( isset($previous) && $previous ) {
-echo(' or view the <a href="'.$previous.'" target="_blank">');
-echo('the previous live office hours</a>');
-}
-?>. 
 	<script type="text/javascript">
 
 		function refresh() {
