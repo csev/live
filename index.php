@@ -95,7 +95,7 @@ display:none;
 <?= $description ?>
 </p>
 	<p>This page will refresh and automatically send you to 
-	the the event URL when the event is about 
+	the event URL when the event is about 
 	to start.</p>
 	<div class="clock"></div>
 	<div class="message"></div>
