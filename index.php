@@ -28,21 +28,23 @@ if ( $refresh < 10*1000 ) $refresh = 10*1000;
 $refresh = $refresh + rand(0,10*1000);
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-423997-1"></script>
+<title>Dr. Chuck Live</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QW9Z3MX240"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-423997-1');
+  gtag('config', 'G-QW9Z3MX240');
 </script>
 
 		<link rel="stylesheet" href="compiled/flipclock.css">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
           <script src="compiled/flipclock.js"></script>
 </head>
@@ -86,9 +88,11 @@ display:none;
 	</head>
 	<body style="font-family: sans-serif;">
 <div class="container">
+<?php if ( $leftvideo ) { ?>
 <div style="margin-left: 10px; float:right">
-<iframe width="400" height="225" src="https://www.youtube.com/embed/UjeNA_JtXME?rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="225" src="<?= $leftvideo ?>" frameborder="0" allowfullscreen></iframe>
 </div>
+<?php } ?>
 	<h1><?= htmlentities($title) ?></h1>
 	<p>Next Scheduled Event: <?= $live ?> (Eastern Time USA)</p>
 <p>
@@ -135,30 +139,5 @@ display:none;
 -->
 </div>
 	
-<!--
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'drchucklive';
-    
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
--->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-423997-19', 'auto');
-  ga('send', 'pageview');
-
-</script>
-	</body>
+</body>
 </html>
