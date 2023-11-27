@@ -47,6 +47,8 @@ $refresh = $refresh + rand(0,10*1000);
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
           <script src="compiled/flipclock.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.3.2/moment-duration-format.js"></script>
 </head>
 <style>
 body {
@@ -84,6 +86,11 @@ a {
 .flip-clock-label {
 display:none;
 }
+
+.hide-xexcept-for-screen-readers {
+  position: absolute;
+  left:-999em;
+}
 </style>
 	</head>
 	<body style="font-family: sans-serif;">
@@ -101,9 +108,13 @@ display:none;
 	<p>This page will refresh and automatically send you to 
 	the event URL when the event is about 
 	to start.</p>
-	<div class="clock"></div>
-	<div class="message"></div>
+	<div class="clock" aria-hide="true"></div>
+	<div id="message" class="hide-except-for-screen-readers"></div>
 	<script type="text/javascript">
+
+		// When we started...
+		var nowInSeconds = (Date.now() / 1000);
+		var doneAtSeconds = nowInSeconds + <?= $difference_in_seconds ?>;
 
 		function refresh() {
 			window.location.reload();
@@ -131,6 +142,25 @@ display:none;
 		    clock.setTime(<?= $difference_in_seconds ?>);
 		    clock.setCountdown(true);
 		    clock.start();
+
+		});
+
+		var lastTextMessage = "";
+		function displayHumanize() {
+	           	const secondsLeft = doneAtSeconds - (Date.now() / 1000);
+			const duration = moment.duration(secondsLeft*1000);
+			const textMessage = "Approximate time remaining: "+duration.humanize();
+
+			if ( lastTextMessage != textMessage ) {
+				$("#message").html(textMessage);
+				lastTextMessage = textMessage;
+			}
+			setTimeout(displayHumanize, 5000);
+		}
+		
+		$(document).ready( function() {
+
+			displayHumanize();
 
 		});
 	</script>
